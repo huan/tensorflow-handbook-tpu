@@ -5,7 +5,7 @@
 
 This repository is the [TPU Chapter](https://tf.wiki/zh/appendix/tpu.html) for [简单粗暴TensorFlow | A Concise Handbook of TensorFlow](https://tf.wiki)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huan/tensorflow-handbook-tpu/blob/master/tensorflow-tpu-example.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huan/tensorflow-handbook-tpu/blob/master/tensorflow-handbook-tpu-example.ipynb)
 
 Book Chapter: TPU for Tensorflow - <https://huan.github.io/tensorflow-handbook-tpu/>
 
