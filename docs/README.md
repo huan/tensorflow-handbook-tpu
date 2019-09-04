@@ -172,19 +172,9 @@ TPU devices:
 
 在使用 Cloud TPU 时，为了免除繁琐的驱动安装，我们可以通过直接使用 Google Cloud 提供的 VM 操作系统镜像。
 
-## TensorFlow 中的分布式训练
+## 使用 TPU
 
-TensorFlow 分布式训练的核心API是`tf.distribute.Strategy`，可以简单几行代码就实现GPU单机多卡、多机多卡，和TPU等情况的分布式训练。它主要有简单易用、开箱即用、高性能、便于各种分布式Strategy切换等诸多优势。
-
-目前 Strategy 已经支持的策略，主要包括：
-
-1. 单机多卡：`MirroredStrategy`
-1. 多机多卡：`MultiWorkerMirroredStrategy`
-1. 使用TPU：`TPUStrategy`
-
-还有另外两种 `ParameterServerStrategy` 和 `CentralStorageStrategy` ，有兴趣的读者可以自行参阅文档。
-
-我们本章主要介绍使用 TPU 的 `tf.distribute.TPUStrategy`。以下是如何实例化 `TPUStrategy`：
+在 TPU 上进行 TensorFlow 分布式训练的核心API是`tf.distribute.TPUStrategy`，可以简单几行代码就实现在 TPU 上的分布式训练，同时也可以很容易的迁移到 GPU单机多卡、多机多卡的环境。以下是如何实例化 `TPUStrategy`：
 
 ```python
 resolver = tf.contrib.cluster_resolver.TPUClusterResolver(tpu='grpc://' + os.environ['COLAB_TPU_ADDR'])
@@ -192,7 +182,7 @@ tf.tpu.experimental.initialize_tpu_system(resolver)
 strategy = tf.distribute.experimental.TPUStrategy(resolver)
 ```
 
-首先，我们通过 `TPUClusterResolver` 用来获得 TPU 的参数（IP和端口），然后，我们对其进行初始化，并在最终通过 `TPUStrategy` 实例化到指定的 TPU 上。
+在上面的代码中，首先我们通过 `TPUClusterResolver` 用来获得 TPU 的参数（IP和端口），然后，我们对其进行初始化，并在最终通过 `TPUStrategy` 实例化到指定的 TPU 上。
 
 ## Fashion MNIST 分类例子
 
