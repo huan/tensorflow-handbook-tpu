@@ -23,39 +23,39 @@ TPU 由多个计算核心（Tensor Core）组成，其中包括标量，矢量�
   </tr>
   <tr>
     <td>TPU<br />(v1, 2015)</td>
-    <td><image src="images/tpu-v1.png" border="0" width="100"></td>
+    <td><img src="images/tpu-v1.png" border="0" width="100"></td>
     <td>92 TeraFLOPS</td>
     <td>8 GB HBM</td>
   </tr>
   <tr>
     <td>Cloud TPU<br />(v2, 2017)</td>
-    <td><image src="images/tpu-v2.jpg" border="0" width="100"></td>
+    <td><img src="images/tpu-v2.jpg" border="0" width="100"></td>
     <td>180 TeraFLOPS</td>
     <td>64 GB HBM</td>
   </tr>
   <tr>
     <td>Cloud TPU<br />(v3, 2018)</td>
-    <td><image src="images/tpu-v3.png" border="0" width="100"></td>
+    <td><img src="images/tpu-v3.png" border="0" width="100"></td>
     <td>420 TeraFLOPS</td>
     <td>128 GB HBM</td>
   </tr>
 
   <tr>
     <td><nobr>Cloud TPU Pod</nobr><br />(v2, 2017)</td>
-    <td><image src="images/tpu-v2-pod.png" border="0" width="100"></td>
+    <td><img src="images/tpu-v2-pod.png" border="0" width="100"></td>
     <td>11,500 TeraFLOPS</td>
     <td>4,096 GB HBM</td>
   </tr>
   <tr>
     <td>Cloud TPU Pod<br />(v3, 2018)</td>
-    <td><image src="images/tpu-v3-pod.jpg" border="0" width="100"></td>
+    <td><img src="images/tpu-v3-pod.jpg" border="0" width="100"></td>
     <td><nobr>100,000+ TeraFLOPS</nobr></td>
     <td><nobr>32,768 GB HBM</nobr></td>
   </tr>
 
   <tr>
     <td>Edge TPU<br />(Coral, 2019)</td>
-    <td><image src="images/tpu-edge-coral-usb.png" border="0" width="100"></td>
+    <td><img src="images/tpu-edge-coral-usb.png" border="0" width="100"></td>
     <td>4 TeraOPS</td>
     <td></td>
   </tr>
