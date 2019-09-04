@@ -193,6 +193,7 @@ strategy = tf.distribute.experimental.TPUStrategy(resolver)
 ```python
 import tensorflow as tf
 import numpy as np
+import os
 
 (x_train, y_train), (x_test, y_test) = tf.keras.datasets.fashion_mnist.load_data()
 
@@ -203,7 +204,7 @@ x_test = np.expand_dims(x_test, -1)
 def create_model():
   model = tf.keras.models.Sequential()
 
-  model.add(tf.keras.layers.Conv2D(128, (3, 3), input_shape=x_train.shape[1:]))
+  model.add(tf.keras.layers.Conv2D(64, (3, 3), input_shape=x_train.shape[1:]))
   model.add(tf.keras.layers.MaxPooling2D(pool_size=(2, 2), strides=(2,2)))
   model.add(tf.keras.layers.Activation('elu'))
 
@@ -212,8 +213,6 @@ def create_model():
   model.add(tf.keras.layers.Activation('softmax'))
   
   return model
-
-import os
 
 resolver = tf.contrib.cluster_resolver.TPUClusterResolver(tpu='grpc://' + os.environ['COLAB_TPU_ADDR'])
 tf.tpu.experimental.initialize_tpu_system(resolver)
@@ -248,7 +247,6 @@ Epoch 4/5
 60/60 [==========] - 1s 11ms/step - loss: 0.3401 - accuracy: 0.8972
 Epoch 5/5
 60/60 [==========] - 4s 60ms/step - loss: 0.2867 - accuracy: 0.9072
-
 10/10 [==========] - 2s 158ms/step
 10/10 [==========] - 2s 158ms/step
 val_loss: 0.3893 - val_sparse_categorical_accuracy: 0.8848
