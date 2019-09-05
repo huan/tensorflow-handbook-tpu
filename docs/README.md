@@ -116,11 +116,11 @@ TPU 由多个计算核心（Tensor Core）组成，其中包括标量，矢量�
 
 Source: [An in-depth look at Google’s first Tensor Processing Unit (TPU)](https://cloud.google.com/blog/products/gcp/an-in-depth-look-at-googles-first-tensor-processing-unit-tpu)
 
-## 免费 TPU：Google Colab
+## 通过 Google Colab 快速体验免费 TPU
 
 最方便使用 TPU 的方法，就是使用 Google 的 Colab ，不但通过浏览器访问直接可以用，而且还免费。
 
-在 [Google Colab](https://colab.research.google.com) 的 Notebook 界面中，打开界面中，打开主菜单 Runtime ，然后选择 Change runtime type，会弹出 Notebook settings 的窗口。选择里面的 Hardware accelerator 为 TPU 就可以了。
+在 [Google Colab](https://colab.research.google.com) 的 Notebook 界面中，打开界面中，打开主菜单 `Runtime` ，然后选择 `Change runtime type`，会弹出 `Notebook settings` 的窗口。选择里面的 `Hardware accelerator` 为 `TPU` 就可以了。
 
 为了确认 Colab Notebook 中的确分配了 TPU 资源，我们可以运行以下测试代码。
 
@@ -163,6 +163,8 @@ TPU devices:
  _DeviceAttributes(/job:tpu_worker/.../device:TPU_SYSTEM:0, TPU_SYSTEM, ...)]
 ```
 
+看到以上信息（一个CPU worker，8个TPU workers），既可以确认 Colab 的 TPU 环境设置正常。
+
 ## Cloud TPU
 
 在 Google Cloud 上，我们可以购买所需的 TPU 资源，用来按需进行机器学习训练。为了使用 Cloud TPU ，需要在 Google Cloud Engine 中启动 VM 并为 VM 请求 Cloud TPU 资源。请求完成后，VM 就可以直接访问分配给它专属的 Cloud TPU了。
@@ -172,21 +174,21 @@ TPU devices:
 
 在使用 Cloud TPU 时，为了免除繁琐的驱动安装，我们可以通过直接使用 Google Cloud 提供的 VM 操作系统镜像。
 
-## 使用 TPU
+## TPU 基础使用
 
 在 TPU 上进行 TensorFlow 分布式训练的核心API是`tf.distribute.TPUStrategy`，可以简单几行代码就实现在 TPU 上的分布式训练，同时也可以很容易的迁移到 GPU单机多卡、多机多卡的环境。以下是如何实例化 `TPUStrategy`：
 
 ```python
-resolver = tf.contrib.cluster_resolver.TPUClusterResolver(tpu='grpc://' + os.environ['COLAB_TPU_ADDR'])
+resolver = tf.distribute.resolver.TPUClusterResolver(
+    tpu='grpc://' + os.environ['COLAB_TPU_ADDR'])
+tf.config.experimental_connect_to_host(resolver.master())
 tf.tpu.experimental.initialize_tpu_system(resolver)
 strategy = tf.distribute.experimental.TPUStrategy(resolver)
 ```
 
-在上面的代码中，首先我们通过 `TPUClusterResolver` 用来获得 TPU 的参数（IP和端口），然后，我们对其进行初始化，并在最终通过 `TPUStrategy` 实例化到指定的 TPU 上。
+在上面的代码中，首先我们通过 TPU 的 IP 和端口实例化 `TPUClusterResolver`；然后，我们通过 `resolver` 链接到 TPU 上，并对其进行初始化；最后，完成实例化 `TPUStrategy`。
 
-## Fashion MNIST 分类例子
-
-本小节的源代码可以在 <https://github.com/huan/tensorflow-handbook-tpu> 找到。
+以下使用 Fashion MNIST 分类任务展示 TPU 的使用方式。本小节的源代码可以在 <https://github.com/huan/tensorflow-handbook-tpu> 找到。
 
 更方便的是在 Google Colab 上直接打开本例子的 Jupyter 直接运行，地址：<https://colab.research.google.com/github/huan/tensorflow-handbook-tpu/blob/master/tensorflow-handbook-tpu-example.ipynb>（推荐）
 
@@ -214,7 +216,9 @@ def create_model():
   
   return model
 
-resolver = tf.contrib.cluster_resolver.TPUClusterResolver(tpu='grpc://' + os.environ['COLAB_TPU_ADDR'])
+resolver = tf.distribute.resolver.TPUClusterResolver(
+    tpu='grpc://' + os.environ['COLAB_TPU_ADDR'])
+tf.config.experimental_connect_to_host(resolver.master())
 tf.tpu.experimental.initialize_tpu_system(resolver)
 strategy = tf.distribute.experimental.TPUStrategy(resolver)
 
