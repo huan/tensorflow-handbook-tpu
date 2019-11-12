@@ -1,4 +1,4 @@
-# Tensorflow Handbook for TPU on Google Cloud
+# TensorFlow 2 Handbook for TPU on Google Cloud
 
 
 ![TPU on Google Cloud](docs/images/tensorflow-tpu.png)
