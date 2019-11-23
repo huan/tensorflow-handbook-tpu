@@ -179,7 +179,7 @@ TPU devices:
 在 TPU 上进行 TensorFlow 分布式训练的核心API是`tf.distribute.TPUStrategy`，可以简单几行代码就实现在 TPU 上的分布式训练，同时也可以很容易的迁移到 GPU单机多卡、多机多卡的环境。以下是如何实例化 `TPUStrategy`：
 
 ```python
-resolver = tf.distribute.resolver.TPUClusterResolver(
+resolver = tf.distribute.cluster_resolver.TPUClusterResolver(
     tpu='grpc://' + os.environ['COLAB_TPU_ADDR'])
 tf.config.experimental_connect_to_host(resolver.master())
 tf.tpu.experimental.initialize_tpu_system(resolver)
@@ -216,7 +216,7 @@ def create_model():
   
   return model
 
-resolver = tf.distribute.resolver.TPUClusterResolver(
+resolver = tf.distribute.cluster_resolver.TPUClusterResolver(
     tpu='grpc://' + os.environ['COLAB_TPU_ADDR'])
 tf.config.experimental_connect_to_host(resolver.master())
 tf.tpu.experimental.initialize_tpu_system(resolver)
