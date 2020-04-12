@@ -8,11 +8,11 @@ Alpha Go 背后的动力全部由 TPU 提供。TPU 使其能够更快地“思�
 
 ## 什么是 TPU
 
-TPU 代表 Tensor Processing Unit (张量处理单元) ，是由谷歌在2016年5月发布的为机器学习而构建的定制集成电路（ASIC），并为TensorFlow量身定制。
+TPU 代表 Tensor Processing Unit (张量处理单元) ，是谷歌在2016年5月的 Google I/O 开发者大会对外公布的为机器学习而构建的定制集成电路（ASIC），并为TensorFlow量身定制。
 
 早在2015年，谷歌大脑团队就成立了第一个TPU中心，为 Google Translation，Photos 和 Gmail等产品提供支持。 为了使所有数据科学家和开发人员能够访问此技术，不久之后就发布了易于使用，可扩展且功能强大的基于云的TPU，以便在 Google Cloud 上运行 TensorFlow 模型。
 
-TPU 由多个计算核心（Tensor Core）组成，其中包括标量，矢量和矩阵单元（MXU）。TPU（张量处理单元）与CPU（中央处理单元）和GPU（图形处理单元）最重要的区别是：TPU的硬件专为线性代数而设计，线性代数是深度学习的基石。在过去几年中，Google TPU 已经发布了 v1，v2，v3, v2 Pod, v3 Pod, Edge 等多个版本：
+TPU 由多个计算核心（Tensor Core）组成，其中包括标量，矢量和矩阵单元（MXU）。TPU（张量处理单元）与CPU（中央处理单元）和GPU（图形处理单元）最重要的区别是：TPU的硬件专为线性代数而设计，线性代数是深度学习的基石。在过去几年中，Google TPU 已经发布了 v1，v2，v3, v2 Pod, v3 Pod, Edge（[Coral](https://coral.ai/)） 等多个版本：
 
 <table border="0">
   <tr>
@@ -39,7 +39,6 @@ TPU 由多个计算核心（Tensor Core）组成，其中包括标量，矢量�
     <td>420 TeraFLOPS</td>
     <td>128 GB HBM</td>
   </tr>
-
   <tr>
     <td><nobr>Cloud TPU Pod</nobr><br />(v2, 2017)</td>
     <td><img src="images/tpu-v2-pod.png" border="0" width="100"></td>
@@ -76,15 +75,15 @@ TPU 由多个计算核心（Tensor Core）组成，其中包括标量，矢量�
 
 ![TPU Pods](images/tpu-pod.jpg)
 
-根据 Google 提供的数据显示，在 Google Cloud TPU Pod 上可以仅用 8 分钟就能够完成ResNet-50 模型的训练。
+根据 MLPerf 提供的数据显示，在 Google Cloud TPU Pod (v3.2048) 上可以仅用 1.28 分钟就能够完成ResNet-50 模型的训练。
 
 | ResNet-50 | TPU | TPU Pod |
 | --- | --- | --- |
 | 训练速度（每秒图像数） | 4000+ | 200,000+ |
 | 最终精度 | 93% | 93% |
-| 训练时长 | 7h 47m | 8m 45s |
+| 训练时长 | 7h 47m | 1m 17s |
 
-> Source: Google
+> Source: https://mlperf.org/training-results-0-6/
 
 ## TPU 性能
 
